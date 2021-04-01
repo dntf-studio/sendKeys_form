@@ -44,6 +44,7 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // btnSend
@@ -67,9 +68,10 @@
             // 
             // txtProcess
             // 
-            this.txtProcess.Location = new System.Drawing.Point(472, 85);
+            this.txtProcess.Enabled = false;
+            this.txtProcess.Location = new System.Drawing.Point(547, 84);
             this.txtProcess.Name = "txtProcess";
-            this.txtProcess.Size = new System.Drawing.Size(231, 19);
+            this.txtProcess.Size = new System.Drawing.Size(182, 19);
             this.txtProcess.TabIndex = 3;
             // 
             // label1
@@ -99,9 +101,9 @@
             this.setinterval.Font = new System.Drawing.Font("MS UI Gothic", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.setinterval.Location = new System.Drawing.Point(405, 132);
             this.setinterval.Name = "setinterval";
-            this.setinterval.Size = new System.Drawing.Size(98, 19);
+            this.setinterval.Size = new System.Drawing.Size(66, 19);
             this.setinterval.TabIndex = 7;
-            this.setinterval.Text = "SetInterval:";
+            this.setinterval.Text = "repeat";
             this.setinterval.UseVisualStyleBackColor = true;
             this.setinterval.CheckedChanged += new System.EventHandler(this.setinterval_CheckedChanged);
             // 
@@ -191,22 +193,35 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 16;
-            this.button1.Text = "button1";
+            this.button1.Text = "reflesh";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(472, 349);
+            this.textBox2.Location = new System.Drawing.Point(455, 270);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(100, 19);
             this.textBox2.TabIndex = 17;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Font = new System.Drawing.Font("MS UI Gothic", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.checkBox2.Location = new System.Drawing.Point(405, 85);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(136, 19);
+            this.checkBox2.TabIndex = 18;
+            this.checkBox2.Text = "can\'t find window";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(728, 450);
+            this.ClientSize = new System.Drawing.Size(742, 360);
+            this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.comboBox1);
@@ -249,6 +264,7 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.CheckBox checkBox2;
     }
 }
 

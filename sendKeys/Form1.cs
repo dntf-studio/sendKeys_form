@@ -27,13 +27,13 @@ namespace sendKeys
         private void button1_Click(object sender, EventArgs e)
         {
 
-            if (txtProcess.Text != "")
+            if (!checkBox2.Checked)
             {
-                if (!checktimer.Checked)
+                if (!checktimer.Checked && comboBox1.SelectedItem.ToString().Length != 0)
                 {
-                    doSend();
+                    doSend(comboBox1.SelectedItem.ToString());
                 }
-                else if (checktimer.Checked)
+                else if (checktimer.Checked && comboBox1.SelectedItem.ToString().Length != 0)
                 {
                     bool canConvert_sec = int.TryParse(textBox1.Text, out var ipio);
                     if (canConvert_sec && textBox1.Text != "")
@@ -43,18 +43,47 @@ namespace sendKeys
                         label5.Visible = true;
                         label5.Text = sec.ToString() + "seconds Slept...";
                         Thread.Sleep(convert_ms);
-                        doSend();
+                        doSend(comboBox1.SelectedItem.ToString());
                     }
+                }
+                else if(comboBox1.SelectedItem.ToString().Length == 0)
+                {
+                    MessageBox.Show("combobox is empty", "error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             bool canConvert = int.TryParse(txtInterval.Text, out var iio);
-            if (canConvert && txtInterval.Text != "" && intervalchecked)
+            if (canConvert && !checkBox2.Checked && comboBox1.SelectedItem.ToString().Length != 0 && intervalchecked)
             {
                 var time = int.Parse(txtInterval.Text);
                 while (intervalchecked)
                 {
-                    Task.Delay(time);
-                    doSend();
+                    //Task.Delay(time);
+                    doSend(comboBox1.SelectedItem.ToString());
+                }
+            }
+
+            if(checkBox2.Checked)
+            {
+                if (!checktimer.Checked && txtProcess.Text.Length != 0)
+                {
+                    doSend(txtProcess.Text);
+                }
+                else if (checktimer.Checked && txtProcess.Text.Length != 0)
+                {
+                    bool canConvert_sec = int.TryParse(textBox1.Text, out var ipio);
+                    if (canConvert_sec && textBox1.Text != "")
+                    {
+                        var sec = int.Parse(textBox1.Text);
+                        var convert_ms = sec * 1000;
+                        label5.Visible = true;
+                        label5.Text = sec.ToString() + "seconds Slept...";
+                        Thread.Sleep(convert_ms);
+                        doSend(txtProcess.Text);
+                    }
+                }
+                else if(txtProcess.Text.Length == 0)
+                {
+                    MessageBox.Show("textbox is empty", "error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
@@ -138,11 +167,11 @@ namespace sendKeys
             }
         }
 
-        public void doSend()
+        public void doSend(string target)
         {
             try
             {
-                Microsoft.VisualBasic.Interaction.AppActivate(comboBox1.SelectedItem.ToString());
+                Microsoft.VisualBasic.Interaction.AppActivate(target);
                 if (checkBox1.Checked)
                 {
                     txt.Text += Environment.NewLine;
@@ -159,6 +188,17 @@ namespace sendKeys
             }
         }
 
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox2.Checked)
+            {
+                txtProcess.Enabled = true;
+            }
+            else if (!checkBox2.Checked)
+            {
+                txtProcess.Enabled = false;
+            }
+        }
     }
 
 }
