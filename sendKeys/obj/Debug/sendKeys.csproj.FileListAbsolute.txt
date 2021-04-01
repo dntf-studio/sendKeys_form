@@ -1,0 +1,10 @@
+E:\C#-apps\sendKeys\sendKeys\bin\Debug\sendKeys.exe.config
+E:\C#-apps\sendKeys\sendKeys\bin\Debug\sendKeys.exe
+E:\C#-apps\sendKeys\sendKeys\bin\Debug\sendKeys.pdb
+E:\C#-apps\sendKeys\sendKeys\obj\Debug\sendKeys.csprojAssemblyReference.cache
+E:\C#-apps\sendKeys\sendKeys\obj\Debug\sendKeys.Form1.resources
+E:\C#-apps\sendKeys\sendKeys\obj\Debug\sendKeys.Properties.Resources.resources
+E:\C#-apps\sendKeys\sendKeys\obj\Debug\sendKeys.csproj.GenerateResource.cache
+E:\C#-apps\sendKeys\sendKeys\obj\Debug\sendKeys.csproj.CoreCompileInputs.cache
+E:\C#-apps\sendKeys\sendKeys\obj\Debug\sendKeys.exe
+E:\C#-apps\sendKeys\sendKeys\obj\Debug\sendKeys.pdb
