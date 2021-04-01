@@ -8,3 +8,6 @@ E:\C#-apps\sendKeys\sendKeys\obj\Debug\sendKeys.csproj.GenerateResource.cache
 E:\C#-apps\sendKeys\sendKeys\obj\Debug\sendKeys.csproj.CoreCompileInputs.cache
 E:\C#-apps\sendKeys\sendKeys\obj\Debug\sendKeys.exe
 E:\C#-apps\sendKeys\sendKeys\obj\Debug\sendKeys.pdb
+E:\C#-apps\sendKeys\sendKeys\bin\Debug\Newtonsoft.Json.dll
+E:\C#-apps\sendKeys\sendKeys\bin\Debug\Newtonsoft.Json.xml
+E:\C#-apps\sendKeys\sendKeys\obj\Debug\sendKeys.csproj.CopyComplete

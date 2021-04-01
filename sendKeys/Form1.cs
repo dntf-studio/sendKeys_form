@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +9,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System.Windows.Forms;
+using Newtonsoft.Json;
+using System.Net;
+using System.Net.Http;
 
 namespace sendKeys
 {
@@ -23,86 +27,39 @@ namespace sendKeys
         private void button1_Click(object sender, EventArgs e)
         {
 
-            if(txtProcess.Text != "")
+            if (txtProcess.Text != "")
             {
                 if (!checktimer.Checked)
                 {
-                    try
-                    {
-                        Microsoft.VisualBasic.Interaction.AppActivate(txtProcess.Text);
-                        if (checkBox1.Checked)
-                        {
-                            txt.Text += Environment.NewLine;
-                            SendKeys.SendWait(txt.Text + "{ENTER}");
-                        }
-                        else
-                        {
-                            SendKeys.SendWait(txt.Text);
-                        }
-                    }
-                    catch (Exception)
-                    {
-                        MessageBox.Show("the Targetname is incorrect", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    doSend();
                 }
                 else if (checktimer.Checked)
                 {
                     bool canConvert_sec = int.TryParse(textBox1.Text, out var ipio);
-                    if(canConvert_sec && textBox1.Text != "")
+                    if (canConvert_sec && textBox1.Text != "")
                     {
                         var sec = int.Parse(textBox1.Text);
                         var convert_ms = sec * 1000;
                         label5.Visible = true;
                         label5.Text = sec.ToString() + "seconds Slept...";
                         Thread.Sleep(convert_ms);
-                        try
-                        {
-                            Microsoft.VisualBasic.Interaction.AppActivate(txtProcess.Text);
-                            if (checkBox1.Checked)
-                            {
-                                txt.Text += Environment.NewLine;
-                                SendKeys.SendWait(txt.Text + "{ENTER}");
-                            }
-                            else
-                            {
-                                SendKeys.SendWait(txt.Text);
-                            }
-                        }
-                        catch (Exception)
-                        {
-                            MessageBox.Show("the Targetname is incorrect", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
+                        doSend();
                     }
                 }
             }
-            bool canConvert = int.TryParse(txtInterval.Text,out var iio);
-            if(canConvert && txtInterval.Text != "" && intervalchecked)
+            bool canConvert = int.TryParse(txtInterval.Text, out var iio);
+            if (canConvert && txtInterval.Text != "" && intervalchecked)
             {
                 var time = int.Parse(txtInterval.Text);
                 while (intervalchecked)
                 {
                     Task.Delay(time);
-                    try
-                    {
-                        Microsoft.VisualBasic.Interaction.AppActivate(txtProcess.Text);
-                        if (checkBox1.Checked)
-                        {
-                            SendKeys.SendWait(txt.Text + "{ENTER}");
-                        }
-                        else
-                        {
-                            SendKeys.SendWait(txt.Text);
-                        }
-                    }
-                    catch (Exception)
-                    {
-                        //MessageBox.Show("the Targetname is incorrect", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    doSend();
                 }
             }
         }
 
-        public static int Count(string s,string ss)
+        public static int Count(string s, string ss)
         {
             return s.Length - s.Replace(ss.ToString(), "").Length;
         }
@@ -126,6 +83,8 @@ namespace sendKeys
             checktimer.Checked = false;
             label4.Enabled = false;
             textBox1.Enabled = false;
+
+            getWindow();
         }
 
         private void setinterval_CheckedChanged(object sender, EventArgs e)
@@ -161,5 +120,45 @@ namespace sendKeys
                 textBox1.Enabled = false;
             }
         }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            getWindow();
+        }
+
+        public void getWindow()
+        {
+            comboBox1.Items.Clear();
+            foreach (System.Diagnostics.Process p in System.Diagnostics.Process.GetProcesses())
+            {
+                if (p.MainWindowTitle.Length != 0)
+                {
+                    comboBox1.Items.Add(p.MainWindowTitle);
+                }
+            }
+        }
+
+        public void doSend()
+        {
+            try
+            {
+                Microsoft.VisualBasic.Interaction.AppActivate(comboBox1.SelectedItem.ToString());
+                if (checkBox1.Checked)
+                {
+                    txt.Text += Environment.NewLine;
+                    SendKeys.SendWait(txt.Text + "{ENTER}");
+                }
+                else
+                {
+                    SendKeys.SendWait(txt.Text);
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("the Targetname is incorrect", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
     }
+
 }
